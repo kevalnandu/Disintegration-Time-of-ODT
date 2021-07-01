@@ -1,0 +1,11 @@
+import pandas as pd
+df = pd.read_csv('C:\\Users\\india\\Desktop\\ODT DATA.csv')
+x = df.iloc[:,0:25]
+y = df.iloc[:,25]
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
+from sklearn.neural_network import MLPClassifier
+mlp = MLPClassifier(hidden_layer_sizes=(9,9),random_state=1,max_iter=10000)
+mlp.fit(x_train,y_train)
+y_pred = mlp.predict(x_test)
+mlp.score(x_test,y_test)
